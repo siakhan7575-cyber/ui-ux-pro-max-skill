@@ -29,13 +29,10 @@
     var y = 1 - (i / (N - 1)) * 2;
     var r = Math.sqrt(1 - y * y);
     var t = golden * i;
-    // Curated palette: mostly violet→magenta (brand), with cyan pops and
-    // a few warm amber sparks. Colourful, but it still reads as one family.
+    // Purple family: deep violet through lilac, with a touch of purple-magenta.
+    // Tonal variety keeps it rich without leaving the brand colour.
     var roll = rand(i);
-    var hue;
-    if (roll < 0.12) hue = 32 + roll * 70;          // warm amber  (~32–40)
-    else if (roll < 0.30) hue = 186 + roll * 26;    // cyan / teal (~191–194)
-    else hue = 260 + (roll - 0.30) * 92;            // violet→magenta (~260–324)
+    var hue = 256 + roll * 46;                       // ~256–302 (violet→purple-magenta)
     pts.push({ x: Math.cos(t) * r, y: y, z: Math.sin(t) * r, hue: hue, seed: rand(i + 7) });
   }
 
@@ -63,7 +60,7 @@
       vy: -(0.0012 + Math.random() * 0.0018),
       life: fresh ? Math.random() : 0,
       size: 0.7 + Math.random() * 1.8,
-      hue: [34, 300, 268, 190][Math.floor(Math.random() * 4)] + (Math.random() * 16 - 8),
+      hue: [268, 286, 258, 300][Math.floor(Math.random() * 4)] + (Math.random() * 12 - 6),
       sway: Math.random() * Math.PI * 2
     };
   }
@@ -143,8 +140,8 @@
     ctx.fillStyle = g1;
     ctx.beginPath(); ctx.arc(cx, cy, R * 1.5, 0, Math.PI * 2); ctx.fill();
     var g2 = ctx.createRadialGradient(cx + R * 0.25, cy + R * 0.15, 0, cx, cy, R * 1.1 * pulse);
-    g2.addColorStop(0, 'hsla(' + (38 + hShift) + ',95%,62%,0.12)');
-    g2.addColorStop(1, 'hsla(38,95%,62%,0)');
+    g2.addColorStop(0, 'hsla(' + (282 + hShift) + ',96%,74%,0.14)');
+    g2.addColorStop(1, 'hsla(282,96%,72%,0)');
     ctx.fillStyle = g2;
     ctx.beginPath(); ctx.arc(cx, cy, R * 1.2, 0, Math.PI * 2); ctx.fill();
 
