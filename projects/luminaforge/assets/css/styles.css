@@ -462,3 +462,67 @@ body.nav-open .nav-toggle span::after { transform: rotate(-45deg) translateY(-1p
 /* ---- Skip link ---------------------------------------------------------- */
 .skip-link { position: absolute; left: -999px; top: 0; z-index: 100; background: var(--violet); color: #fff; padding: 0.6rem 1rem; border-radius: 0 0 8px 0; }
 .skip-link:focus { left: 0; }
+
+/* ---- Pricing / Packages ------------------------------------------------- */
+.packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 900px) { .packages-grid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
+.package {
+  position: relative;
+  display: flex; flex-direction: column; gap: 0.9rem;
+  padding: var(--s-5) var(--s-4);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.package:hover { transform: translateY(-4px); border-color: var(--line-2); box-shadow: var(--shadow); }
+.package.is-featured {
+  border-color: rgba(168,85,247,0.5);
+  box-shadow: 0 30px 70px -34px var(--violet-glow);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(168,85,247,0.16), transparent 55%),
+    linear-gradient(180deg, var(--panel-2), var(--panel));
+}
+.pkg-badge {
+  position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: #fff; background: linear-gradient(180deg, var(--violet), var(--violet-2));
+  padding: 0.3rem 0.8rem; border-radius: 999px; white-space: nowrap;
+  box-shadow: 0 8px 20px -8px var(--violet-glow);
+}
+.package h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.5rem; letter-spacing: -0.01em; }
+.pkg-blurb { color: var(--ink-mute); font-size: 0.92rem; margin-top: -0.2rem; }
+.pkg-price { font-family: var(--font-display); font-size: 1.3rem; color: var(--ink); padding-block: 0.4rem; border-block: 1px solid var(--line); }
+.pkg-price.pkg-quote { color: var(--violet-lo); font-style: italic; }
+.pkg-feats { list-style: none; padding: 0; display: grid; gap: 0.65rem; }
+.pkg-feats li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.92rem; color: var(--ink-soft); }
+.pkg-feats li svg { width: 1.05rem; height: 1.05rem; flex: none; color: var(--violet-lo); margin-top: 0.15rem; }
+.package .btn { margin-top: auto; justify-content: center; }
+
+/* ---- FAQ ---------------------------------------------------------------- */
+.faq-layout { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--s-6); align-items: start; }
+.faq-layout .section-head { margin-bottom: 0; position: sticky; top: 100px; }
+@media (max-width: 860px) { .faq-layout { grid-template-columns: 1fr; gap: var(--s-4); } .faq-layout .section-head { position: static; } }
+.faq-list { display: grid; gap: 0.75rem; }
+.faq-item {
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  overflow: hidden; transition: border-color 0.25s var(--ease);
+}
+.faq-item[open] { border-color: var(--line-2); }
+.faq-item summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.1rem 1.25rem; font-weight: 600; color: var(--ink); font-size: 1.02rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--violet-lo); }
+.faq-chevron { width: 1.2rem; height: 1.2rem; flex: none; color: var(--ink-mute); transition: transform 0.3s var(--ease), color 0.3s; }
+.faq-item[open] .faq-chevron { transform: rotate(180deg); color: var(--violet-lo); }
+.faq-a { padding: 0 1.25rem 1.2rem; }
+.faq-a p { color: var(--ink-mute); font-size: 0.96rem; margin: 0; max-width: 60ch; }
+
+/* ---- Form: two-up row + optional label ---------------------------------- */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+@media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+.field label .opt { color: var(--ink-mute); font-weight: 400; font-size: 0.78rem; }

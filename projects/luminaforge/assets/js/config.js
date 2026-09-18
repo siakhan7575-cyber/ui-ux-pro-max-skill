@@ -31,6 +31,14 @@ window.LUMINAFORGE = {
       x: '',
       dribbble: '',
     },
+
+    // Where the contact form sends leads.
+    //  - Leave empty ('') to open the visitor's email app with all their
+    //    details pre-filled to your inbox (works everywhere, no signup).
+    //  - Or paste a form endpoint URL (e.g. a Formspree URL like
+    //    'https://formspree.io/f/xxxxxxx') to collect submissions in a
+    //    dashboard instead. The form posts JSON to it.
+    formEndpoint: '',
   },
 
   /* ---- Services you offer ---------------------------------------------- */
@@ -66,6 +74,46 @@ window.LUMINAFORGE = {
      liveUrl / caseUrl: use '' to hide that button.
      ---------------------------------------------------------------------- */
   projects: [
+    {
+      name: 'Veloura',
+      type: 'Salon & Beauty · Website Demo',
+      image: 'assets/img/projects/salon.jpg',
+      description: 'A calm, elegant salon site that makes booking effortless and shows the brand at its best.',
+      features: ['Online booking CTA', 'Services & pricing', 'Mobile-first'],
+      liveUrl: '../salon/index.html',
+      caseUrl: '../salon/index.html',
+      accent: '#C98A86',
+    },
+    {
+      name: 'Saffron & Sage',
+      type: 'Restaurant & Café · Website Demo',
+      image: 'assets/img/projects/restaurant.jpg',
+      description: 'A warm, editorial restaurant site with a living menu and one clear path to a reservation.',
+      features: ['Live menu layout', 'Reservation CTA', 'Opening hours'],
+      liveUrl: '../restaurant/index.html',
+      caseUrl: '../restaurant/index.html',
+      accent: '#D9A441',
+    },
+    {
+      name: 'Northpoint Estates',
+      type: 'Real Estate · Website Demo',
+      image: 'assets/img/projects/real-estate.jpg',
+      description: 'A trustworthy estate-agent site with a clean property search and featured listings.',
+      features: ['Property search', 'Listing cards', 'Valuation CTA'],
+      liveUrl: '../real-estate/index.html',
+      caseUrl: '../real-estate/index.html',
+      accent: '#C8A35A',
+    },
+    {
+      name: 'Iron & Oak',
+      type: 'Fitness & Gym · Website Demo',
+      image: 'assets/img/projects/fitness.jpg',
+      description: 'A bold strength-studio site built to convert visitors into a free-trial sign-up.',
+      features: ['Free-trial CTA', 'Class breakdown', 'High-energy design'],
+      liveUrl: '../fitness/index.html',
+      caseUrl: '../fitness/index.html',
+      accent: '#C6F24E',
+    },
     {
       name: 'HealthView',
       type: 'Healthcare · Analytics Dashboard',
@@ -136,5 +184,41 @@ window.LUMINAFORGE = {
     { quote: 'Add a real client quote here once you have one — how the project felt to work on and the result it delivered.', name: 'Client name', role: 'Business type', sample: true },
     { quote: 'A second short, specific quote works best: one concrete outcome beats five vague compliments.', name: 'Client name', role: 'Business type', sample: true },
     { quote: 'Keep them honest and human. Two or three strong quotes are more convincing than a wall of them.', name: 'Client name', role: 'Business type', sample: true },
+  ],
+
+  /* ---- Pricing / Packages ----------------------------------------------
+     Packages are shown as "contact for quote" — no prices are displayed.
+     To show prices later, add a `price` field and it will render.
+     Mark one tier `featured: true` to highlight it.
+     ---------------------------------------------------------------------- */
+  packages: [
+    {
+      name: 'Landing Page',
+      blurb: 'One sharp, fast page to launch a product, campaign or booking flow.',
+      features: ['Single responsive page', 'Copy & layout guidance', 'Contact / booking CTA', 'Basic SEO & analytics'],
+      featured: false,
+    },
+    {
+      name: 'Business Website',
+      blurb: 'A complete multi-section site that explains your business and brings in enquiries.',
+      features: ['Up to ~6 sections/pages', 'Custom design & branding', 'Mobile-first & accessible', 'SEO basics + contact form', 'Handover & training'],
+      featured: true,
+    },
+    {
+      name: 'Custom & Web Apps',
+      blurb: 'Dashboards, interactive tools or anything bespoke — scoped around what you actually need.',
+      features: ['Tailored scope', 'Interactive features', 'Integrations & data', 'Ongoing support option'],
+      featured: false,
+    },
+  ],
+
+  /* ---- FAQ -------------------------------------------------------------- */
+  faq: [
+    { q: 'How much does a website cost?', a: 'Every project is different, so I quote per project rather than list fixed prices. Tell me what you need and I\'ll send a clear, itemised quote — no surprises.' },
+    { q: 'How long does it take?', a: 'A landing page is usually a matter of days; a full business website a few weeks. I\'ll give you a realistic timeline once I understand the scope.' },
+    { q: 'What do you need from me to start?', a: 'A rough idea of your goals, any branding or content you already have, and examples of sites you like. If you don\'t have content yet, I can help shape it.' },
+    { q: 'Do I own the website when it\'s done?', a: 'Yes — completely. You get the code and the accounts, with nothing locked to me or a proprietary platform.' },
+    { q: 'Can you redesign my existing site?', a: 'Absolutely. Redesigns and rescues are a big part of what I do — rebuilding tired or slow sites into something modern and easy to update.' },
+    { q: 'What happens after launch?', a: 'I walk you through everything and stay reachable for changes. Ongoing support and updates can be arranged if you\'d like a hand keeping things fresh.' },
   ],
 };

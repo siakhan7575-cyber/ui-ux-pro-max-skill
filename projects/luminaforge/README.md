@@ -76,17 +76,36 @@ Sample quotes are marked `sample: true`, which shows a small **Sample** tag so
 nothing is passed off as a real client quote. Replace them with genuine quotes
 and remove the flag.
 
+### Pricing / Packages
+In `config.js → packages`, each tier has `name`, `blurb`, `features[]` and an
+optional `featured: true` (highlights one card). Prices are intentionally hidden
+("Contact for quote"). To show a price on a tier, add `price: 'from $X'` and it
+renders automatically.
+
+### FAQ
+In `config.js → faq`, each entry is `{ q, a }`. The first item is open by default;
+they render as an accessible `<details>` accordion (keyboard-friendly, no JS state).
+
+### Contact form / collecting leads
+The form captures name, email, phone/WhatsApp, business type and a message.
+Where it sends is controlled by `config.js → contact.formEndpoint`:
+- **Empty (`''`)** — opens the visitor's email app with all details pre-filled to
+  your inbox. Works everywhere, no signup.
+- **A form URL** (e.g. Formspree `https://formspree.io/f/xxxxxxx`) — the form
+  POSTs the lead as JSON there and shows success/error states inline.
+
 ## Regenerating the demo screenshots (optional)
 
-The three portfolio images were captured from the sibling demos in
-`projects/` (`portfolio-dark`, `healthcare-dashboard`, `saas-landing`). To
-refresh them, screenshot each demo at 1440×900 and save over the matching file
+The portfolio images are captured from the sibling demos in `projects/`:
+`salon`, `restaurant`, `real-estate`, `fitness` (self-contained demo sites built
+for LuminaForge), plus `portfolio-dark`, `healthcare-dashboard`, `saas-landing`.
+To refresh one, screenshot the demo at 1440×900 and save over the matching file
 in `assets/img/projects/`.
 
 ## What's included
 
 - **Sections:** Hero, Services, Portfolio, About, Process, Why work with me,
-  Testimonials, Contact.
+  Pricing, Testimonials, FAQ, Contact.
 - **3D hero:** a rotating point-cloud sphere rendered on `<canvas>` with real
   perspective projection and pointer parallax — no Three.js, ~4 KB.
 - **Accessibility:** semantic landmarks, skip link, keyboard-visible focus,
@@ -101,8 +120,6 @@ in `assets/img/projects/`.
 
 ## Notes
 
-- The contact form validates client-side and then opens the visitor's email
-  app with a pre-filled message to your inbox. To collect submissions on a
-  server instead, wire the `#contactForm` submit handler in `main.js` to your
-  form endpoint (Formspree, Netlify Forms, your own API, etc.).
+- To collect leads in a dashboard instead of by email, set
+  `contact.formEndpoint` to your form URL (see "Contact form / collecting leads").
 - Fonts (Fraunces, Inter, Space Mono) load from Google Fonts.

@@ -71,6 +71,8 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact" class="btn btn-primary btn-sm nav-cta">Let's talk</a>
       </nav>
 
@@ -214,6 +216,18 @@
       </div>
     </section>
 
+    <!-- ================= Pricing / Packages ================= -->
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Packages</span>
+          <h2 id="pricing-title">Simple ways to work together.</h2>
+          <p>Every project is quoted individually — pick the starting point that fits, and I'll send a clear, no-surprises quote.</p>
+        </div>
+        <div class="packages-grid" id="packagesGrid"></div>
+      </div>
+    </section>
+
     <!-- ================= Testimonials ================= -->
     <section class="section" id="testimonials" aria-labelledby="testi-title">
       <div class="container">
@@ -223,6 +237,18 @@
           <p>Sample placeholders for now — I'll swap in real client quotes as projects wrap up.</p>
         </div>
         <div class="grid grid-2" id="testimonialsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-layout">
+        <div class="section-head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2 id="faq-title">Questions, answered.</h2>
+          <p>Not sure about something? Here are the things clients ask most. Anything else — just ask.</p>
+        </div>
+        <div class="faq-list" id="faqList"></div>
       </div>
     </section>
 
@@ -243,9 +269,27 @@
                   <label for="cf-name">Your name</label>
                   <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required />
                 </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="cf-email">Email</label>
+                    <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="jane@business.com" required />
+                  </div>
+                  <div class="field">
+                    <label for="cf-phone">Phone / WhatsApp <span class="opt">(optional)</span></label>
+                    <input id="cf-phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567" />
+                  </div>
+                </div>
                 <div class="field">
-                  <label for="cf-email">Email</label>
-                  <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="jane@business.com" required />
+                  <label for="cf-business">Business type <span class="opt">(optional)</span></label>
+                  <input id="cf-business" name="business" type="text" placeholder="Salon, restaurant, real estate…" list="cf-business-list" />
+                  <datalist id="cf-business-list">
+                    <option value="Salon & Beauty"></option>
+                    <option value="Restaurant & Café"></option>
+                    <option value="Real Estate"></option>
+                    <option value="Fitness & Gym"></option>
+                    <option value="E-commerce"></option>
+                    <option value="Other"></option>
+                  </datalist>
                 </div>
                 <div class="field">
                   <label for="cf-msg">What can I help with?</label>
