@@ -51,6 +51,17 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- ================= Cinematic layers ================= -->
+  <div class="intro" id="intro" role="presentation">
+    <div class="intro-inner">
+      <span class="intro-mark">LuminaForge</span>
+      <span class="intro-line"></span>
+      <span class="intro-sub">Web design &amp; development</span>
+    </div>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- ================= Header ================= -->
   <header class="site-header" id="siteHeader">
     <div class="container nav">
@@ -89,8 +100,8 @@
     <section class="hero section" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow reveal">Freelance web design &amp; development</p>
-          <h1 id="hero-title" class="reveal" data-delay="1">
+          <p class="eyebrow reveal cine">Freelance web design &amp; development</p>
+          <h1 id="hero-title" class="reveal cine" data-delay="1">
             I design &amp; build websites that <em>win clients</em>.
           </h1>
           <p class="lead reveal" data-delay="2">
@@ -113,7 +124,7 @@
         </div>
 
         <div class="hero-visual reveal" data-delay="2">
-          <div class="hero-stage" id="heroStage" aria-hidden="true">
+          <div class="hero-stage" id="heroStage" data-parallax="0.05" aria-hidden="true">
             <div class="stage-ring"></div>
             <canvas id="heroCanvas"></canvas>
             <span class="stage-label">forging in progress</span>
@@ -330,6 +341,7 @@
   </footer>
 
   <script src="assets/js/config.js"></script>
+  <script src="assets/js/cinematic.js" defer></script>
   <script src="assets/js/hero3d.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
