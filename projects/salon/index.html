@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veloura — Salon &amp; Spa</title>
+  <meta name="description" content="Veloura is a modern salon and spa offering hair, colour, skin and nail care in a calm, unhurried setting." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --plum:#3a2438; --rose:#c98a86; --blush:#f3e4df; --cream:#fbf6f2;
+      --ink:#2c1f2b; --muted:#7c6a76; --gold:#c9a24b;
+      --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+    }
+    *{margin:0;box-sizing:border-box}
+    body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1160px;margin-inline:auto;padding-inline:28px}
+    header{position:absolute;inset:0 0 auto 0;z-index:5}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:88px;color:var(--cream)}
+    .brand{font-family:var(--serif);font-size:1.7rem;letter-spacing:.06em;font-weight:600}
+    .brand span{color:var(--rose)}
+    .nav ul{display:flex;gap:34px;list-style:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+    .nav .book{border:1px solid rgba(251,246,242,.5);padding:11px 22px;border-radius:999px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+    @media(max-width:760px){.nav ul{display:none}}
+    /* hero */
+    .hero{position:relative;min-height:640px;display:flex;align-items:center;
+      background:radial-gradient(120% 100% at 80% 0%,#5a3a54,transparent 55%),linear-gradient(160deg,#2c1a29,#432b40);color:var(--cream);overflow:hidden}
+    .hero::after{content:'';position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:520px;height:520px;border-radius:50%;
+      background:radial-gradient(circle at 40% 35%,rgba(201,138,134,.55),transparent 62%);filter:blur(6px)}
+    .hero-in{position:relative;z-index:2;max-width:640px;padding-block:120px}
+    .eyebrow{font-size:.74rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose);margin-bottom:22px}
+    .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3rem,2rem+5vw,5.2rem);line-height:1.02;letter-spacing:.01em}
+    .hero h1 em{font-style:italic;color:var(--rose)}
+    .hero p{margin-top:24px;font-weight:300;font-size:1.15rem;max-width:44ch;color:#e9d9d3}
+    .cta{display:inline-flex;gap:12px;margin-top:38px}
+    .btn{padding:15px 30px;border-radius:999px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+    .btn-fill{background:var(--rose);color:#2c1a29}
+    .btn-line{border:1px solid rgba(251,246,242,.45);color:var(--cream)}
+    /* strip */
+    .strip{background:var(--plum);color:var(--blush);font-family:var(--serif);font-size:1.35rem;letter-spacing:.04em}
+    .strip .wrap{display:flex;flex-wrap:wrap;gap:14px 48px;justify-content:center;padding-block:26px;font-style:italic}
+    .strip span{opacity:.55}
+    /* services */
+    .services{padding-block:110px}
+    .sec-head{text-align:center;max-width:620px;margin:0 auto 64px}
+    .sec-head .k{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+    .sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,1.5rem+3vw,3.4rem);margin-top:14px;line-height:1.08}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr}}
+    .card{background:#fff;border:1px solid var(--blush);border-radius:18px;padding:34px 26px;transition:transform .3s,box-shadow .3s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -30px rgba(58,36,56,.6)}
+    .card .ic{width:52px;height:52px;border-radius:50%;background:var(--blush);display:grid;place-items:center;margin-bottom:22px;color:var(--plum)}
+    .card h3{font-family:var(--serif);font-size:1.6rem;font-weight:600}
+    .card p{color:var(--muted);font-size:.95rem;margin-top:8px}
+    .card .price{margin-top:18px;font-family:var(--serif);font-style:italic;color:var(--rose);font-size:1.15rem}
+    /* booking */
+    .book-band{background:var(--blush);padding-block:90px;text-align:center}
+    .book-band h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,1.4rem+3vw,3rem)}
+    .book-band p{color:var(--muted);margin-top:14px}
+    .book-band .hours{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:30px;font-size:.9rem;color:var(--ink)}
+    .book-band .hours b{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--plum)}
+    footer{background:#2c1a29;color:#c6b3bf;padding-block:40px;text-align:center;font-size:.85rem;letter-spacing:.06em}
+    footer .brand{color:var(--cream);margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <header><div class="wrap nav">
+    <div class="brand">Vel<span>ou</span>ra</div>
+    <ul><li>Services</li><li>About</li><li>Gallery</li><li>Contact</li></ul>
+    <a class="book" href="#book">Book now</a>
+  </div></header>
+
+  <section class="hero"><div class="wrap"><div class="hero-in">
+    <p class="eyebrow">Salon &amp; Spa</p>
+    <h1>Beauty,<br><em>unhurried.</em></h1>
+    <p>A calm studio for hair, colour, skin and nails — where every appointment is time set aside just for you.</p>
+    <div class="cta">
+      <a class="btn btn-fill" href="#book">Book an appointment</a>
+      <a class="btn btn-line" href="#services">View services</a>
+    </div>
+  </div></div></section>
+
+  <div class="strip"><div class="wrap">
+    <span>✦</span> Hair <span>✦</span> Colour <span>✦</span> Skincare <span>✦</span> Nails <span>✦</span> Bridal
+  </div></div>
+
+  <section class="services" id="services"><div class="wrap">
+    <div class="sec-head">
+      <div class="k">What we offer</div>
+      <h2>Considered treatments, beautifully done</h2>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 20c4-3 6-8 6-14M20 20c-4-3-6-8-6-14M12 3v18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3>Cut &amp; Style</h3><p>Precision cuts and finishes tailored to how you actually wear your hair.</p><div class="price">from consultation</div></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 4a8 8 0 000 16" stroke="currentColor" stroke-width="1.6"/></svg></div><h3>Colour</h3><p>Balayage, gloss and full colour using low-ammonia, kinder formulas.</p><div class="price">by quote</div></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3s6 4 6 9a6 6 0 11-12 0c0-5 6-9 6-9z" stroke="currentColor" stroke-width="1.6"/></svg></div><h3>Skin &amp; Facials</h3><p>Relaxing facials and skin therapy to leave you glowing and rested.</p><div class="price">45–75 min</div></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 21V8a5 5 0 0110 0v13" stroke="currentColor" stroke-width="1.6"/><path d="M7 13h10" stroke="currentColor" stroke-width="1.6"/></svg></div><h3>Nails</h3><p>Manicures and pedicures with a colour wall you'll want to photograph.</p><div class="price">walk-ins welcome</div></div>
+    </div>
+  </div></section>
+
+  <section class="book-band" id="book"><div class="wrap">
+    <h2>Ready when you are</h2>
+    <p>Book online in under a minute, or call the studio and we'll find you a slot.</p>
+    <a class="btn btn-fill" style="margin-top:28px" href="#">Book your appointment</a>
+    <div class="hours">
+      <div><b>Tue–Fri</b> 9:00 – 19:00</div>
+      <div><b>Saturday</b> 9:00 – 17:00</div>
+      <div><b>Sun–Mon</b> Closed</div>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap">
+    <div class="brand" style="font-family:var(--serif);font-size:1.4rem">Veloura</div>
+    Salon &amp; Spa · Demo design by LuminaForge
+  </div></footer>
+</body>
+</html>

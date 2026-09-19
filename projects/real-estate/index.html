@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northpoint Estates — Property, done right</title>
+  <meta name="description" content="Northpoint Estates helps you buy, sell and let with a calm, modern approach and honest advice." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --navy:#0f1b2d; --navy2:#16263d; --slate:#5b6b80; --gold:#c8a35a;
+      --ink:#132033; --muted:#6b7789; --bg:#f4f6f9; --line:#e2e7ee;
+      --serif:'Fraunces',Georgia,serif; --sans:'Manrope',system-ui,sans-serif;
+    }
+    *{margin:0;box-sizing:border-box}
+    body{font-family:var(--sans);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1180px;margin-inline:auto;padding-inline:28px}
+    header{position:absolute;inset:0 0 auto 0;z-index:5}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:84px;color:#fff}
+    .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:600;font-size:1.35rem}
+    .brand .m{width:30px;height:30px;border:1.5px solid var(--gold);border-radius:7px;display:grid;place-items:center;color:var(--gold)}
+    .nav ul{display:flex;gap:30px;list-style:none;font-size:.9rem;font-weight:500;color:#dbe3ee}
+    .nav .cta{background:var(--gold);color:var(--navy);padding:11px 22px;border-radius:8px;font-weight:600;font-size:.85rem}
+    @media(max-width:820px){.nav ul{display:none}}
+    .hero{position:relative;min-height:600px;display:flex;align-items:center;color:#fff;
+      background:linear-gradient(180deg,rgba(15,27,45,.86),rgba(15,27,45,.92)),radial-gradient(120% 90% at 80% 0%,#264063,transparent 55%),var(--navy)}
+    .hero-in{position:relative;z-index:2;padding-top:120px;padding-bottom:70px;max-width:720px}
+    .k{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+    .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,1.7rem+5vw,4.8rem);line-height:1.02;letter-spacing:-.01em}
+    .hero p{margin-top:20px;font-size:1.12rem;color:#c6d1e0;max-width:44ch}
+    /* search bar */
+    .search{margin-top:36px;background:#fff;border-radius:14px;padding:10px;display:flex;gap:8px;max-width:620px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+    .search .f{flex:1;padding:12px 16px;border-right:1px solid var(--line)}
+    .search .f small{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .search .f b{color:var(--ink);font-weight:600;font-size:.98rem}
+    .search button{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:0 26px;font-weight:600;font-family:var(--sans);cursor:pointer}
+    @media(max-width:560px){.search{flex-wrap:wrap}.search .f{border-right:0}.search button{padding:14px;flex:1}}
+    /* listings */
+    .listings{padding-block:96px;background:var(--bg)}
+    .sec-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px;margin-bottom:40px}
+    .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,1.4rem+2.4vw,2.8rem)}
+    .sec-head a{color:var(--slate);font-weight:600;font-size:.9rem}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.grid{grid-template-columns:1fr}}
+    .prop{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+    .prop:hover{transform:translateY(-5px);box-shadow:0 26px 50px -30px rgba(15,27,45,.5)}
+    .prop .photo{height:190px;position:relative;display:flex;align-items:flex-end;padding:14px}
+    .prop .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);color:var(--navy);font-weight:700;font-size:.8rem;padding:6px 12px;border-radius:8px}
+    .prop .status{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--navy);font-weight:700;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:6px}
+    .prop .body{padding:20px 22px 24px}
+    .prop h3{font-family:var(--serif);font-weight:600;font-size:1.25rem}
+    .prop .addr{color:var(--muted);font-size:.9rem;margin-top:4px}
+    .prop .meta{display:flex;gap:18px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);color:var(--slate);font-size:.86rem;font-weight:600}
+    footer{background:var(--navy);color:#9fb0c6;padding-block:40px;text-align:center;font-size:.85rem}
+    footer .brand{justify-content:center;color:#fff;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <header><div class="wrap nav">
+    <div class="brand"><span class="m">N</span> Northpoint</div>
+    <ul><li>Buy</li><li>Rent</li><li>Sell</li><li>About</li></ul>
+    <a class="cta" href="#">Book a valuation</a>
+  </div></header>
+
+  <section class="hero"><div class="wrap"><div class="hero-in">
+    <p class="k">Estate agents · Buy · Sell · Let</p>
+    <h1>Find a place to<br>call home.</h1>
+    <p>Honest advice, a calm process and a modern search — for the move that actually fits your life.</p>
+    <div class="search">
+      <div class="f"><small>Location</small><b>Riverside &amp; North</b></div>
+      <div class="f"><small>Type</small><b>Any property</b></div>
+      <div class="f"><small>Beds</small><b>2+</b></div>
+      <button>Search</button>
+    </div>
+  </div></div></section>
+
+  <section class="listings"><div class="wrap">
+    <div class="sec-head">
+      <h2>Featured listings</h2>
+      <a href="#">View all properties →</a>
+    </div>
+    <div class="grid">
+      <article class="prop"><div class="photo" style="background:linear-gradient(160deg,#33507a,#1b3350)"><span class="tag">£465,000</span><span class="status">New</span></div><div class="body"><h3>The Maltings, No. 12</h3><div class="addr">Riverside Quarter</div><div class="meta"><span>3 bed</span><span>2 bath</span><span>Garden</span></div></div></article>
+      <article class="prop"><div class="photo" style="background:linear-gradient(160deg,#3d5a6f,#213f4d)"><span class="tag">£320,000</span></div><div class="body"><h3>Oakfield Apartments</h3><div class="addr">North Common</div><div class="meta"><span>2 bed</span><span>1 bath</span><span>Balcony</span></div></div></article>
+      <article class="prop"><div class="photo" style="background:linear-gradient(160deg,#4a4f74,#26294a)"><span class="tag">£1,250 pcm</span><span class="status">To let</span></div><div class="body"><h3>Willow Street Townhouse</h3><div class="addr">Old Town</div><div class="meta"><span>4 bed</span><span>3 bath</span><span>Parking</span></div></div></article>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap">
+    <div class="brand"><span class="m">N</span> Northpoint Estates</div>
+    Property, done right — Demo design by LuminaForge
+  </div></footer>
+</body>
+</html>

@@ -165,33 +165,105 @@
     }
   }
 
-  /* ---- Contact form (client-side states; opens mail client) ------------ */
+  /* ---- Contact / lead form --------------------------------------------
+     Captures the client's details. If contact.formEndpoint is set, the
+     lead is POSTed there (e.g. Formspree); otherwise it falls back to a
+     pre-filled email to your inbox. Loading / success / error states are
+     shown inline.
+     ---------------------------------------------------------------------- */
   function wireForm() {
     var form = $('#contactForm'); if (!form) return;
     var status = $('#cf-status');
     var submit = $('#cf-submit');
+    var val = function (id) { var el = $(id); return el ? el.value.trim() : ''; };
+
+    function mailtoFallback(lead) {
+      var to = (CFG.contact && CFG.contact.email) || 'siakhan7575@gmail.com';
+      var lines = [
+        'Name: ' + lead.name,
+        'Email: ' + lead.email,
+        lead.phone ? 'Phone / WhatsApp: ' + lead.phone : '',
+        lead.business ? 'Business type: ' + lead.business : '',
+        '',
+        lead.message
+      ].filter(Boolean).join('\n');
+      var subject = encodeURIComponent('Website enquiry from ' + lead.name);
+      window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + encodeURIComponent(lines);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       status.className = 'form-status';
-      var name = $('#cf-name').value.trim();
-      var email = $('#cf-email').value.trim();
-      var msg = $('#cf-msg').value.trim();
-      if (!name || !email || !msg) { status.textContent = 'Please fill in all three fields.'; status.classList.add('err'); return; }
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { status.textContent = 'That email doesn\'t look right — mind checking it?'; status.classList.add('err'); return; }
+      var lead = {
+        name: val('#cf-name'), email: val('#cf-email'), phone: val('#cf-phone'),
+        business: val('#cf-business'), message: val('#cf-msg')
+      };
+      if (!lead.name || !lead.email || !lead.message) {
+        status.textContent = 'Please fill in your name, email and a short message.'; status.classList.add('err'); return;
+      }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.email)) {
+        status.textContent = 'That email doesn\'t look right — mind checking it?'; status.classList.add('err'); return;
+      }
 
       submit.classList.add('is-loading');
-      // Simulated handoff: builds a pre-filled email to the business inbox.
-      setTimeout(function () {
-        var to = (CFG.contact && CFG.contact.email) || 'siakhan7575@gmail.com';
-        var subject = encodeURIComponent('Website enquiry from ' + name);
-        var body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
+      var endpoint = CFG.contact && CFG.contact.formEndpoint;
+      var done = function (ok) {
         submit.classList.remove('is-loading');
-        status.textContent = 'Thanks, ' + name.split(' ')[0] + '! Opening your email app to send…';
-        status.classList.add('ok');
-        window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
-        form.reset();
-      }, 650);
+        if (ok) {
+          status.textContent = 'Thanks, ' + lead.name.split(' ')[0] + '! Your message is on its way — I\'ll be in touch soon.';
+          status.classList.add('ok'); form.reset();
+        } else {
+          status.textContent = 'Something went wrong sending that. Please email me directly and I\'ll get right back to you.';
+          status.classList.add('err');
+        }
+      };
+
+      if (endpoint) {
+        fetch(endpoint, {
+          method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(lead)
+        }).then(function (r) { done(r.ok); }).catch(function () { done(false); });
+      } else {
+        // No endpoint configured — hand off to the visitor's email app.
+        setTimeout(function () {
+          status.textContent = 'Thanks, ' + lead.name.split(' ')[0] + '! Opening your email app to send…';
+          status.classList.add('ok');
+          mailtoFallback(lead);
+          submit.classList.remove('is-loading');
+          form.reset();
+        }, 500);
+      }
     });
+  }
+
+  /* ---- Pricing / Packages ---------------------------------------------- */
+  function renderPackages() {
+    var grid = $('#packagesGrid'); if (!grid) return;
+    var list = CFG.packages || [];
+    grid.innerHTML = list.map(function (p, i) {
+      var feats = (p.features || []).map(function (f) {
+        return '<li>' + icon('check') + '<span>' + esc(f) + '</span></li>';
+      }).join('');
+      return '<article class="package' + (p.featured ? ' is-featured' : '') + ' reveal" data-delay="' + (i % 3) + '">' +
+        (p.featured ? '<span class="pkg-badge">Most popular</span>' : '') +
+        '<h3>' + esc(p.name) + '</h3>' +
+        '<p class="pkg-blurb">' + esc(p.blurb) + '</p>' +
+        (p.price ? '<div class="pkg-price">' + esc(p.price) + '</div>' : '<div class="pkg-price pkg-quote">Contact for quote</div>') +
+        '<ul class="pkg-feats">' + feats + '</ul>' +
+        '<a class="btn ' + (p.featured ? 'btn-primary' : 'btn-ghost') + '" href="#contact">Get a quote</a>' +
+        '</article>';
+    }).join('');
+  }
+
+  /* ---- FAQ (native <details> accordion) -------------------------------- */
+  function renderFaq() {
+    var wrap = $('#faqList'); if (!wrap) return;
+    wrap.innerHTML = (CFG.faq || []).map(function (f, i) {
+      return '<details class="faq-item reveal" data-delay="' + (i % 3) + '"' + (i === 0 ? ' open' : '') + '>' +
+        '<summary><span>' + esc(f.q) + '</span>' +
+        '<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</summary><div class="faq-a"><p>' + esc(f.a) + '</p></div></details>';
+    }).join('');
   }
 
   /* ---- 3D tilt on project cards (respects reduced motion) -------------- */
@@ -260,7 +332,9 @@
     renderProjects();
     renderProcess();
     renderReasons();
+    renderPackages();
     renderTestimonials();
+    renderFaq();
     renderContact();
     wireForm();
     wireHeader();
